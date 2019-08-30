@@ -41,10 +41,24 @@ import {
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
+import axios from "axios";
+
 class Dashboard extends React.Component {
   state = {
-    value: 0
+    value: 0,
+    evento: []
   };
+
+
+  componentDidMount(){
+    axios.get('http://127.0.0.1:8000/evento/1/').then( res =>{
+      console.log(res);
+      this.setState({evento: res.data});
+    });
+  }
+
+
+
   handleChange = (event, value) => {
     this.setState({ value });
   };
