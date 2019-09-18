@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from asistentes import views
 from rest_framework import routers
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = routers.DefaultRouter()
 router.register(r'Eventos', views.EventoView, base_name="evento")
@@ -27,5 +28,7 @@ router.register(r'Actividades', views.IntinerarioView, base_name="intinerario")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('api/token/', TokenObtainPairView.as_view()),
+    path('api/token/refresh/', TokenRefreshView.as_view())
 ]
