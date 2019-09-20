@@ -18,7 +18,9 @@
 import React from "react";
 import { Formik } from 'formik';
 import * as Yup from "yup";
-import { AuthLogin } from '../../actions/authActions';
+import axios from 'axios';
+import {Redirect} from 'react-router'
+// import { AuthLogin } from '../../actions/authActions';
 
 // reactstrap components
 import {
@@ -39,7 +41,18 @@ const Login = () => (
   <Formik
     initialValues={{username: "", password: ""}}
     onSubmit={(values, { setSubmitting }) => {
-      AuthLogin(values)
+      axios.post('http://127.0.0.1:8000/api/token/', {
+          username: values.username,
+          password: values.password
+      }).then(res => {
+          localStorage.setItem('jwt-r', res.data.refresh)
+          localStorage.setItem('jwt-a', res.data.access)
+          setSubmitting("Logged")
+      })
+      .catch(error => {
+          error = error.response.request.statusText
+          setSubmitting(null)
+      })
     }}
     validationSchema = { Yup.object().shape({
       username: Yup.string()
@@ -62,14 +75,21 @@ const Login = () => (
           handleBlur, 
           handleSubmit
         } = props;
+        if (!isSubmitting){
         return (
           <>
         <Col lg="5" md="7">
           <Card className="bg-secondary shadow border-0">
-            <CardHeader className="bg-transparent pb-5">
-              <div className="text-muted text-center mt-2 mb-1">
+            <CardHeader className="bg-transparent pb-2">
+              <div className="text-muted text-center mt-2">
                 <small>Inicia sesión con credenciales</small>
               </div>
+              { isSubmitting == null && (
+                <div className="text-muted text-center mt-4">
+                  <small className="text-danger">Error Usuario o contraseña invalido</small>
+                </div>
+              )}
+              
             </CardHeader>
             <CardBody className="px-lg-5 py-lg-5">
               <Form role="form" onSubmit={handleSubmit}>
@@ -156,7 +176,9 @@ const Login = () => (
           </Row>
         </Col>
       </>
-        )
+        )}else if(isSubmitting === "Logged"){
+          return (<Redirect to='/admin/index' />)          
+        }
       }
     }
       

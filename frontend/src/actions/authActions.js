@@ -1,5 +1,6 @@
 import axios from 'axios';
-export function AuthLogin(data) {
+import { Redirect } from 'react-router-dom';
+export function AuthLogin(data, auth=false) {
     axios.post('http://127.0.0.1:8000/api/token/', {
         username: data.username,
         password: data.password
@@ -8,7 +9,8 @@ export function AuthLogin(data) {
         localStorage.setItem('jwt-a', res.data.access)
     })
     .catch(error => {
-        console.log(error.response)
+        error = error.response.request.statusText
+        console.log(error)
     })
         
 }
