@@ -125,7 +125,7 @@ class Index extends React.Component {
                       this.state.eventos.map((item, index) =>(
                         <tr>
                           <th scope="row">
-                            <Link to="/admin/detalles_evento">
+                            <Link to={`/admin/detalles_evento/` + item.id}>
                             {item.nombre}
                             </Link>
                           </th>
