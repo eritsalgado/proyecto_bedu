@@ -22,6 +22,7 @@ import Register from "views/examples/Register.jsx";
 import Login from "views/examples/Login.jsx";
 import Tables from "views/examples/Tables.jsx";
 import NuevoEvento from "views/examples/NuevoEvento.jsx";
+import Evento from "views/examples/Evento.jsx";
 import Icons from "views/examples/Icons.jsx";
 
 var routes = [
@@ -67,7 +68,7 @@ var routes = [
   },
   {
     path: "/detalles_evento",
-    component: NuevoEvento,
+    component: Evento,
     layout: "/admin"
   },
   // {

@@ -24,13 +24,17 @@ const API_URL = 'http://127.0.0.1:8000/Eventos/';
 
 class Header extends React.Component {
   state = {
-    eventos: []
+    eventos: [],
+    evento_data: "",
   };
   componentDidMount() {
     axios.get(API_URL).then(response => response.data)
     .then((data) => {
-      this.setState({ eventos: data.results })
-      console.log(this.state.eventos)
+      this.setState({ 
+        eventos: data.results,
+        evento_data: window.location.href.split("/")[5] 
+      })
+      // console.log(this.state.evento_data)
      })
   }
   render() {
