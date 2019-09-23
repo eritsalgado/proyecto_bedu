@@ -9,7 +9,7 @@ from django.forms.models import model_to_dict
 
 # Create your views here.
 class EventoView(ModelViewSet):
-    permission_classes = (IsAuthenticatedOrReadOnly,)    
+    permission_classes = (AllowAny,)    
 
     queryset = Evento.objects.all().order_by('id')
     serializer_class = EventoSerializer
@@ -22,13 +22,13 @@ class AsistenteView(ModelViewSet):
     serializer_class = AsistenteSerializer
 
 class FechaView(ModelViewSet):
-    # permission_classes = (IsAuthenticated,)    
+    permission_classes = (AllowAny,)    
     
     queryset = Fecha.objects.all().order_by('id')
     serializer_class = FechaSerializer
 
 class IntinerarioView(ModelViewSet):
-    # permission_classes = (IsAuthenticated,)    
+    permission_classes = (AllowAny,)    
     
     queryset = Intinerario.objects.all().order_by('id')
     serializer_class = IntinerarioSerializer

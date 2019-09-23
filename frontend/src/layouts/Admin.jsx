@@ -67,7 +67,7 @@ class Admin extends React.Component {
           routes={routes}
           logo={{
             innerLink: "/admin/index",
-            imgSrc: require("assets/img/brand/logo vertical.svg"),
+            imgSrc: require("assets/img/brand/Sublime Logo.png"),
             imgAlt: "..."
           }}
         />

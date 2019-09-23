@@ -22,6 +22,7 @@ import classnames from "classnames";
 import Chart from "chart.js";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
+import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 // reactstrap components
 import {
   Button,
@@ -85,17 +86,18 @@ class Index extends React.Component {
                 <CardHeader className="border-0">
                   <Row className="align-items-center">
                     <div className="col">
-                      <h3 className="mb-0">Page visits</h3>
+                      <h3 className="mb-0">Eventos creados</h3>
                     </div>
                     <div className="col text-right">
-                      <Button
-                        color="primary"
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
+                      <Link
+                        color="success"
+                        to="/admin/nuevo_evento"
+                        className="btn btn-success"
                         size="sm"
                       >
-                        See all
-                      </Button>
+                        <i className="ni ni-fat-add mr-2"/>
+                        Nuevo Evento
+                      </Link>
                     </div>
                   </Row>
                 </CardHeader>
