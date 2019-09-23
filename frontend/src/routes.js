@@ -65,6 +65,11 @@ var routes = [
     component: NuevoEvento,
     layout: "/admin"
   },
+  {
+    path: "/detalles_evento",
+    component: NuevoEvento,
+    layout: "/admin"
+  },
   // {
   //   path: "/login",
   //   name: "Login",

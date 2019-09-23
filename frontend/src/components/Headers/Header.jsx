@@ -19,8 +19,20 @@ import React from "react";
 
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import axios from 'axios';
+const API_URL = 'http://127.0.0.1:8000/Eventos/';
 
 class Header extends React.Component {
+  state = {
+    eventos: []
+  };
+  componentDidMount() {
+    axios.get(API_URL).then(response => response.data)
+    .then((data) => {
+      this.setState({ eventos: data.results })
+      console.log(this.state.eventos)
+     })
+  }
   render() {
     return (
       <>
@@ -100,7 +112,9 @@ class Header extends React.Component {
                           >
                             Eventos
                           </CardTitle>
-                          <span className="h2 font-weight-bold mb-0">5</span>
+                          <span className="h2 font-weight-bold mb-0">
+                          {this.state.eventos.length}
+                          </span>
                         </div>
                         <Col className="col-auto">
                           <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
