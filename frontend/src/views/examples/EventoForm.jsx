@@ -61,9 +61,11 @@ const EventoForm = () => (
         )
         .then((response) => {
             console.log(response.data.id)
+            setSubmitting("Agregado")
           })
         .catch((error) => {
             console.log(error)
+            setSubmitting(null)
           });;
         
       })
@@ -95,6 +97,7 @@ const EventoForm = () => (
           handleBlur, 
           handleSubmit
         } = props;
+        if(!isSubmitting){
         return (
           <>
         
@@ -244,8 +247,10 @@ const EventoForm = () => (
               </Form>
             
       </>
-        )}
-      
+        )}else if(isSubmitting === "Agregado"){
+          return (<Redirect to='/admin/index' />)          
+        }
+      }
     }
       
   </Formik>
